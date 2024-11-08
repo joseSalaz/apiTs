@@ -12,11 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const axios_1 = __importDefault(require("axios"));
-const app = (0, express_1.default)();
-const port = 3000;
-app.get('/api/typescript', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.default = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const firstApiUrl = 'https://apipyton-0805.onrender.com/api/python'; // API de Python
         const response1 = yield axios_1.default.get(firstApiUrl);
@@ -35,7 +32,4 @@ app.get('/api/typescript', (req, res) => __awaiter(void 0, void 0, void 0, funct
         console.error('Error:', error);
         res.status(500).json({ error: 'Error interno en el servidor' });
     }
-}));
-app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
 });
