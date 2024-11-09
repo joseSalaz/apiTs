@@ -1,7 +1,10 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import express, { Request, Response } from 'express';
 import axios from 'axios';
 
-export default async (req: VercelRequest, res: VercelResponse) => {
+const app = express();
+const port = 3000;
+
+app.get('/api/typescript', async (req: Request, res: Response) => {
   try {
     const firstApiUrl = 'https://apipyton-0805.onrender.com/api/python'; // API de Python
     const response1 = await axios.get(firstApiUrl);
@@ -15,6 +18,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
       TypeScripDice: 'Este mensaje es enviado desde VERCEL',
       jsonResponse: firstApiData,
       textResponse: secondApiData,
+      
     };
 
     res.json(combinedData);
@@ -22,4 +26,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     console.error('Error:', error);
     res.status(500).json({ error: 'Error interno en el servidor' });
   }
-};
+});
+
+app.listen(port, () => {
+  console.log(`Servidor escuchando en http://localhost:${port}`);
+});
