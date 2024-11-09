@@ -1,6 +1,8 @@
 {
-    "rewrites": [
-      { "source": "/api/:path*", "destination": "/api/index.js" }
+    "builds": [
+      {
+        "src": "*.ts",
+        "use": "@vercel/node"
+      }
     ]
   }
-  
